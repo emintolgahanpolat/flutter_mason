@@ -1,0 +1,11 @@
+
+bricks:
+  page:
+    path: bricks/page
+  repository:
+    path: bricks/repository
+  service:
+    path: bricks/service
+  bootstrap:
+    path: bricks/bootstrap
+

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:route_map/route_map.dart';
-
+@RouteMap()
 class {{name.camelCase()}}Page extends StatefulWidget {
   const {{name.camelCase()}}Page({ Key? key }) : super(key: key);
   @override

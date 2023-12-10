@@ -1,1 +1,1 @@
-abstract class {{name.camelCase()}}Repository {}
+abstract class {{name.pascalCase()}}Repository {}

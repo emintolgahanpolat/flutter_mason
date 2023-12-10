@@ -1,4 +1,4 @@
 
-abstract class Mock{{name.camelCase()}}Service implements {{name.camelCase()}}Service  {
+abstract class Mock{{name.pascalCase()}}Service implements {{name.pascalCase()}}Service  {
   
 }

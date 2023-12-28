@@ -1,4 +1,3 @@
-
 bricks:
   page:
     path: bricks/page
@@ -6,6 +5,3 @@ bricks:
     path: bricks/repository
   service:
     path: bricks/service
-  bootstrap:
-    path: bricks/bootstrap
-

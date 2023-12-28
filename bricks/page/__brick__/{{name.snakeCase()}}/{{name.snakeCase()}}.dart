@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:route_map/route_map.dart';
+import './{{name.snakeCase()}}_vm.dart';
+
 @RouteMap()
 class {{name.pascalCase()}}Page extends StatefulWidget {
-  const {{name.pascalCase()}}Page({ Key? key }) : super(key: key);
+  const {{name.pascalCase()}}Page({ super.key }) : super(key: key);
   @override
   State<{{name.pascalCase()}}Page> createState() => _{{name.pascalCase()}}PageState();
 }

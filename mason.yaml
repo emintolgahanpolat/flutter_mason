@@ -5,3 +5,5 @@ bricks:
     path: bricks/repository
   service:
     path: bricks/service
+  core:
+    path: bricks/core

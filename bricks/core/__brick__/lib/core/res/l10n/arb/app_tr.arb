@@ -1,0 +1,22 @@
+{
+  "@@locale": "tr",
+  "camera": "Kamera",
+  "cancel": "İptal",
+  "clickToCall": "Tek tuşla arama",
+  "description": "Açıklama",
+  "galery": "Galeri",
+  "includeSomeDetails": "Biraz bilgi ekle",
+  "location": "Konum",
+  "login": "Giriş Yap",
+  "moneySembol": "₺",
+  "next": "Devam et",
+  "postNow": "Hemen ilan ver",
+  "price": "Fiyat",
+  "receiveCallFromMaster": "İlanların hakkında arama al",
+  "selectedPhotos": "Seçilen fotoğraflar",
+  "setLocation": "Konum Belirle",
+  "setPrice": "Fiyart belirle",
+  "settings": "Ayarlar",
+  "title": "Başlık",
+  "uploadYourPhotos": "Fotoğraflarını yükle"
+}

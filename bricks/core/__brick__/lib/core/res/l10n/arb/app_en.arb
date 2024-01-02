@@ -1,0 +1,22 @@
+{
+  "@@locale": "en",
+  "camera": "Camera",
+  "cancel": "Cancel",
+  "clickToCall": "Click to call",
+  "description": "Description",
+  "galery": "Galery",
+  "includeSomeDetails": "Include some details",
+  "location": "Location",
+  "login": "Login",
+  "moneySembol": "$",
+  "next": "Next",
+  "postNow": "Post now",
+  "price": "Price",
+  "receiveCallFromMaster": "Receive call from master",
+  "selectedPhotos": "Selected photos",
+  "setLocation": "Set a Location",
+  "setPrice": "Set a price",
+  "settings": "Settings",
+  "title": "Title",
+  "uploadYourPhotos": "Upload your photos"
+}

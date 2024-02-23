@@ -2,46 +2,52 @@ import '../res/colors.dart';
 import '../res/icons.dart';
 import 'package:flutter/material.dart';
 
-class AppTheme {
-  static ColorScheme darkColorScheme = ColorScheme.dark(
+class LightTheme extends AppTheme {
+  @override
+  ColorScheme get colorScheme => ColorScheme.light(
+      primary: AppColors.primarySwatch, outlineVariant: AppColors.grey);
+}
+
+class DarkTheme extends AppTheme {
+  @override
+  ColorScheme get colorScheme => ColorScheme.dark(
       secondary: AppColors.primarySwatch,
       primary: AppColors.primarySwatch,
       outlineVariant: AppColors.grey);
+}
 
-  static ColorScheme lightColorScheme = ColorScheme.light(
+class AppTheme {
+  ColorScheme colorScheme = ColorScheme.light(
       primary: AppColors.primarySwatch, outlineVariant: AppColors.grey);
 
-  static ColorScheme currentColorScheme(bool isDark) =>
-      isDark ? darkColorScheme : lightColorScheme;
-  static ThemeData theme({bool isDark = false}) {
+  ThemeData theme() {
     return ThemeData(
         useMaterial3: true,
-        colorScheme: currentColorScheme(isDark),
+        colorScheme: colorScheme,
         appBarTheme: const AppBarTheme(
           centerTitle: false,
           scrolledUnderElevation: 0,
         ),
         dividerTheme: DividerThemeData(
           space: 1,
-          color: currentColorScheme(isDark).onSurface.withOpacity(0.1),
+          color: colorScheme.onSurface.withOpacity(0.1),
         ),
         cardTheme: CardTheme(
           clipBehavior: Clip.antiAlias,
           shape: RoundedRectangleBorder(
               borderRadius: const BorderRadius.all(Radius.circular(16)),
               side: BorderSide(
-                  color: currentColorScheme(isDark).onSurface.withOpacity(0.8),
-                  width: 6)),
+                  color: colorScheme.onSurface.withOpacity(0.8), width: 6)),
         ),
         textTheme:
             const TextTheme(titleLarge: TextStyle(fontWeight: FontWeight.w700)),
         listTileTheme: ListTileThemeData(
-          iconColor: currentColorScheme(isDark).onSurface.withOpacity(
-                0.5,
-              ),
+          iconColor: colorScheme.onSurface.withOpacity(
+            0.5,
+          ),
           titleTextStyle: TextStyle(
             fontWeight: FontWeight.bold,
-            color: currentColorScheme(isDark).onSurface,
+            color: colorScheme.onSurface,
           ),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(8),
@@ -63,12 +69,11 @@ class AppTheme {
         ),
         iconButtonTheme: IconButtonThemeData(
             style: IconButton.styleFrom(
-                backgroundColor:
-                    currentColorScheme(isDark).onPrimary.withOpacity(0.5))),
+                backgroundColor: colorScheme.onPrimary.withOpacity(0.5))),
         iconTheme: IconThemeData(
-            color: currentColorScheme(isDark).onSurface.withOpacity(
-                  0.5,
-                ),
+            color: colorScheme.onSurface.withOpacity(
+              0.5,
+            ),
             size: 18),
         outlinedButtonTheme: OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(
@@ -83,7 +88,7 @@ class AppTheme {
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: ElevatedButton.styleFrom(
                 backgroundColor: AppColors.primarySwatch,
-                foregroundColor: currentColorScheme(isDark).onPrimary,
+                foregroundColor: colorScheme.onPrimary,
                 textStyle: const TextStyle(
                   fontWeight: FontWeight.bold,
                 ))),
@@ -100,7 +105,7 @@ class AppTheme {
           border: inputBorder,
           filled: true,
           alignLabelWithHint: true,
-          fillColor: currentColorScheme(isDark).onPrimary,
+          fillColor: colorScheme.onPrimary,
           enabledBorder: inputBorder,
           disabledBorder: inputBorder,
         ));

@@ -8,7 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:route_map/route_map.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
-@RouteMap()
+@RouteMap(name: "settings")
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
   @override

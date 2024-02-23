@@ -5,7 +5,7 @@ import '../../router/app_router.routes.dart';
 import 'package:flutter/material.dart';
 import 'package:route_map/route_map.dart';
 
-@RouteMap(name: "/")
+@RouteMap(name: "home")
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
   @override

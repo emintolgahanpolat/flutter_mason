@@ -17,8 +17,8 @@ class _AppState extends BaseState<AppViewModel, App> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        theme: AppTheme.theme(isDark: false),
-        darkTheme: AppTheme.theme(isDark: true),
+        theme: LightTheme().theme(),
+        darkTheme: DarkTheme().theme(),
         themeMode: viewModel.isDarkMode ? ThemeMode.dark : ThemeMode.light,
         initialRoute: RouteMaps.root,
         onGenerateRoute: onGenerateRoute,

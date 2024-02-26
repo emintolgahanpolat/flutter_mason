@@ -80,6 +80,11 @@ class _SettingsPageState extends BaseState<SettingsViewModel, SettingsPage> {
                         })),
                   );
                 }),
+            const Divider(),
+            ListTile(
+              title: const Text("App Version"),
+              subtitle: Text(viewModel.getAppVersion()),
+            )
           ],
         ),
       ),

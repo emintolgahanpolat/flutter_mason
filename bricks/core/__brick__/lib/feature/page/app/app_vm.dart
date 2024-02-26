@@ -1,7 +1,7 @@
 import '../../../core/base/base_view_model.dart';
 import '../../../core/source/local_data_source.dart';
 import '../../../core/logger.dart';
-import '../../../core/siren/siren/siren.dart';
+import '../../../core/siren/siren.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:package_info_plus/package_info_plus.dart';

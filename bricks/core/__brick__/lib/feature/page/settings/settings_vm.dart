@@ -1,5 +1,6 @@
 import '../../../core/base/base_view_model.dart';
 import 'package:injectable/injectable.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 
 @injectable
 class SettingsViewModel extends BaseViewModel {

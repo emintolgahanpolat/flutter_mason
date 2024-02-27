@@ -46,6 +46,24 @@ $ mason make repository --name {repositoryName}
 $ mason make service --name {serviceName}
 ```
 
+## flutter_launcher_icons 🚀
+
+```sh
+flutter pub run flutter_launcher_icons
+```
+
+#### Change name
+
+```sh
+xcode -> Assets
+AppIcon-production -> AppIcon
+AppIcon-development -> AppIcon-dev
+AppIcon-staging -> AppIcon-stg
+
+and
+LaunchImage change image
+```
+
 ---
 
 ## Running Tests 🧪

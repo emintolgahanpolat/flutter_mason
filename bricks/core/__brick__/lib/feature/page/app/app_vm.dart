@@ -5,13 +5,24 @@ import '../../../core/siren/siren.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:connectivity_plus/connectivity_plus.dart';
 
 @singleton
 class AppViewModel extends BaseViewModel {
   final PackageInfo _packageInfo;
+  final Connectivity _connectivity;
   final LocalDataSource _localDataSource;
-  AppViewModel(this._localDataSource, this._packageInfo) {
-    checkForUpdate();
+  AppViewModel(this._localDataSource, this._packageInfo, this._connectivity) {
+    _checkForUpdate();
+    _checkConnectivity();
+  }
+  ConnectivityResult _connectivityStatus = ConnectivityResult.other;
+  bool get isConnect => _connectivityStatus != ConnectivityResult.none;
+  void _checkConnectivity() {
+    _connectivity.onConnectivityChanged.listen((event) {
+      _connectivityStatus = event;
+      notifyListeners();
+    });
   }
 
   Locale? get locale => _localDataSource.locale;
@@ -28,7 +39,7 @@ class AppViewModel extends BaseViewModel {
       });
   SirenType sirenType = SirenType.none;
   String get packageName => _packageInfo.packageName;
-  void checkForUpdate() {
+  void _checkForUpdate() {
     Siren()
       ..majorUpdateAlertType = SirenType.force
       ..minorUpdateAlertType = SirenType.option

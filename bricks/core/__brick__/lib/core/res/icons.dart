@@ -8,7 +8,7 @@ class AppIcons {
   static const IconData menu = Icons.menu;
   static const IconData xmark = Icons.close;
   static const IconData settings = Icons.settings;
-
+  static const IconData noConnectivity = Icons.wifi_off_rounded;
   static const IconData language = Icons.language;
   static const IconData darkMode = Icons.dark_mode;
   static const IconData lightMode = Icons.light_mode;

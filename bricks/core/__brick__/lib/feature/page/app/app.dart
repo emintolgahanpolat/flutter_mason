@@ -2,6 +2,7 @@ import 'dart:io';
 import '../../../core/base/base_widget.dart';
 import '../../../core/res/theme.dart';
 import '../../../core/res/l10n/app_localizations.dart';
+import '../no_connectivity/no_connectivity.dart';
 import './app_vm.dart';
 import '../../router/app_router.dart';
 import '../../router/app_router.routes.dart';
@@ -42,7 +43,12 @@ class _AppState extends BaseState<AppViewModel, App> {
             });
           }
           return GestureDetector(
-            child: child ?? Container(),
+            child: Stack(
+              children: [
+                child!,
+                if (!viewModel.isConnect) const NoConnectivityPage()
+              ],
+            ),
             onTap: () {
               FocusManager.instance.primaryFocus?.unfocus();
             },

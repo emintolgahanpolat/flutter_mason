@@ -2,11 +2,11 @@ import '../../../core/base/base_widget.dart';
 import '../../../core/di/locator.dart';
 import '../../../core/res/icons.dart';
 import '../../../core/res/l10n/l10n.dart';
+import '../../../core/res/l10n/app_localizations.dart';
 import '../app/app_vm.dart';
 import '../settings/settings_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:route_map/route_map.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 @RouteMap(name: "settings")
 class SettingsPage extends StatefulWidget {
@@ -20,7 +20,7 @@ class _SettingsPageState extends BaseState<SettingsViewModel, SettingsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Settings '),
+        title: Text(context.l10n.settings),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -83,7 +83,19 @@ class _SettingsPageState extends BaseState<SettingsViewModel, SettingsPage> {
             const Divider(),
             ListTile(
               title: const Text("App Version"),
-              subtitle: Text(viewModel.getAppVersion()),
+              subtitle: Text(viewModel.appVersion),
+            ),
+            const Divider(),
+            ListTile(
+              title: const Text("Licenses"),
+              trailing: const Icon(AppIcons.chevronRight),
+              onTap: () {
+                showLicensePage(
+                    context: context,
+                    useRootNavigator: true,
+                    applicationName: viewModel.appName,
+                    applicationVersion: viewModel.appVersion);
+              },
             )
           ],
         ),

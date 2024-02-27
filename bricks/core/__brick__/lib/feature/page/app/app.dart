@@ -1,12 +1,12 @@
 import 'dart:io';
 import '../../../core/base/base_widget.dart';
 import '../../../core/res/theme.dart';
+import '../../../core/res/l10n/app_localizations.dart';
 import './app_vm.dart';
 import '../../router/app_router.dart';
 import '../../router/app_router.routes.dart';
 import '../../../core//siren/siren.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class App extends StatefulWidget {

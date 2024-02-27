@@ -1,23 +1,23 @@
-import '../res/colors.dart';
+import '../res/colors.gen.dart';
 import '../res/icons.dart';
 import 'package:flutter/material.dart';
 
 class LightTheme extends AppTheme {
   @override
-  ColorScheme get colorScheme => ColorScheme.light(
+  ColorScheme get colorScheme => const ColorScheme.light(
       primary: AppColors.primarySwatch, outlineVariant: AppColors.grey);
 }
 
 class DarkTheme extends AppTheme {
   @override
-  ColorScheme get colorScheme => ColorScheme.dark(
+  ColorScheme get colorScheme => const ColorScheme.dark(
       secondary: AppColors.primarySwatch,
       primary: AppColors.primarySwatch,
       outlineVariant: AppColors.grey);
 }
 
 class AppTheme {
-  ColorScheme colorScheme = ColorScheme.light(
+  ColorScheme colorScheme = const ColorScheme.light(
       primary: AppColors.primarySwatch, outlineVariant: AppColors.grey);
 
   ThemeData theme() {
@@ -77,7 +77,7 @@ class AppTheme {
             size: 18),
         outlinedButtonTheme: OutlinedButtonThemeData(
           style: OutlinedButton.styleFrom(
-            side: BorderSide(color: AppColors.primarySwatch),
+            side: const BorderSide(color: AppColors.primarySwatch),
           ),
         ),
         textButtonTheme: TextButtonThemeData(

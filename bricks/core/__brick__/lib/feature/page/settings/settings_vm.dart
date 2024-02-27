@@ -7,7 +7,7 @@ class SettingsViewModel extends BaseViewModel {
   final PackageInfo _packageInfo;
   SettingsViewModel(this._packageInfo);
 
-  String getAppVersion() {
-    return "${_packageInfo.version} (${_packageInfo.buildNumber})";
-  }
+  String get appVersion =>
+      "${_packageInfo.version} (${_packageInfo.buildNumber})";
+  String get appName => _packageInfo.appName;
 }

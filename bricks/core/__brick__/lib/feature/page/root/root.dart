@@ -1,6 +1,5 @@
 import '../../../core/base/base_widget.dart';
 import './root_vm.dart';
-import '../../../core/res/icons.dart';
 import '../../router/app_router.dart';
 import '../../router/app_router.routes.dart';
 import 'package:flutter/material.dart';

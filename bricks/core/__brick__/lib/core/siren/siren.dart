@@ -148,7 +148,7 @@ class ForceUpdatePage extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            Expanded(
+            const Expanded(
               child: FittedBox(
                   child: Icon(Icons.rocket_launch_outlined,
                       color: AppColors.primarySwatch)),

@@ -1,6 +1,6 @@
 import 'package:injectable/injectable.dart';
 import '../service/app_service.dart';
-import '../app_repository.dart';
+import './app_repository.dart';
 
 @LazySingleton(as: AppRepository)
 class AppRepositoryImpl extends AppRepository {

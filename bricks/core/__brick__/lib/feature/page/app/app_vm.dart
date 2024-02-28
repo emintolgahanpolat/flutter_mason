@@ -1,6 +1,5 @@
 import '../../../core/base/base_view_model.dart';
 import '../../../core/source/local_data_source.dart';
-import '../../../core/logger.dart';
 import '../../../core/siren/siren.dart';
 import '../../data/repository/app_repository.dart';
 import 'package:flutter/material.dart';
@@ -30,10 +29,9 @@ class AppViewModel extends BaseViewModel {
 
   Future setLocale(Locale locale) => _localDataSource.setLocale(locale);
 
-  bool get isDarkMode => _localDataSource.isDark;
-  Future setDarkMode(bool isDark) =>
-      _localDataSource.setIsDark(isDark).then((value) {
-        Log.i("$isDark", tag: "Changed Theme");
+  ThemeMode get appearance => _localDataSource.appearance;
+  Future setDarkMode(ThemeMode appearance) =>
+      _localDataSource.setAppearance(appearance).then((value) {
         notifyListeners();
       });
   SirenType sirenType = SirenType.none;

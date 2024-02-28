@@ -12,6 +12,8 @@ class AppIcons {
   static const IconData language = Icons.language;
   static const IconData darkMode = Icons.dark_mode;
   static const IconData lightMode = Icons.light_mode;
+  static const IconData license = Icons.verified_outlined;
+  static const IconData version = Icons.info_outline;
   // status icons
   static const IconData success = Icons.check_circle;
   static const IconData info = Icons.info;

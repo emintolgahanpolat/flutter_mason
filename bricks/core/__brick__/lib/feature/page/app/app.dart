@@ -23,7 +23,7 @@ class _AppState extends BaseState<AppViewModel, App> {
     return MaterialApp(
         theme: LightTheme().theme(),
         darkTheme: DarkTheme().theme(),
-        themeMode: viewModel.isDarkMode ? ThemeMode.dark : ThemeMode.light,
+        themeMode: viewModel.appearance,
         initialRoute: RouteMaps.root,
         onGenerateRoute: onGenerateRoute,
         localizationsDelegates: AppLocalizations.localizationsDelegates,

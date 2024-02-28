@@ -38,44 +38,69 @@ class _SettingsPageState extends BaseState<SettingsViewModel, SettingsPage> {
                 viewModel: getIt<AppViewModel>(),
                 builder: (context, vm) {
                   return ListTile(
+                    title: const Text("Appearance"),
                     onTap: () {
-                      vm.setDarkMode(!vm.isDarkMode);
+                      showModalBottomSheet(
+                          context: context,
+                          useRootNavigator: true,
+                          builder: (c) => SingleChildScrollView(
+                                child: SafeArea(
+                                  child: Column(
+                                    children: [
+                                      RadioListTile<ThemeMode>(
+                                        value: ThemeMode.light,
+                                        groupValue: vm.appearance,
+                                        onChanged: (v) {
+                                          vm.setDarkMode(ThemeMode.light);
+                                          Navigator.pop(c);
+                                        },
+                                        title: const Text("Light"),
+                                      ),
+                                      RadioListTile(
+                                        value: ThemeMode.dark,
+                                        groupValue: vm.appearance,
+                                        onChanged: (v) {
+                                          vm.setDarkMode(ThemeMode.dark);
+                                          Navigator.pop(c);
+                                        },
+                                        title: const Text("Dark"),
+                                      ),
+                                      RadioListTile(
+                                        value: ThemeMode.system,
+                                        groupValue: vm.appearance,
+                                        onChanged: (v) {
+                                          vm.setDarkMode(ThemeMode.system);
+                                          Navigator.pop(c);
+                                        },
+                                        title: const Text("System Default"),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ));
                     },
-                    title: const Text("Dark Theme"),
-                    trailing: Switch(
-                        value: vm.isDarkMode,
-                        onChanged: (v) {
-                          vm.setDarkMode(v);
-                        },
-                        thumbIcon: MaterialStateProperty.resolveWith((states) {
-                          if (states.contains(MaterialState.selected)) {
-                            return const Icon(
-                              AppIcons.darkMode,
-                              color: Colors.white,
-                            );
-                          }
-                          return const Icon(
-                            AppIcons.lightMode,
-                            color: Colors.white,
-                          );
-                        })),
+                    leading: const Icon(AppIcons.lightMode),
+                    trailing: const Icon(AppIcons.chevronRight),
                   );
                 }),
             const Divider(),
             ListTile(
               title: const Text("App Version"),
+              leading: const Icon(AppIcons.version),
               subtitle: Text(viewModel.appVersion),
             ),
             const Divider(),
             ListTile(
               title: const Text("Licenses"),
+              leading: const Icon(AppIcons.license),
               trailing: const Icon(AppIcons.chevronRight),
               onTap: () {
                 showLicensePage(
                     context: context,
                     useRootNavigator: true,
                     applicationName: viewModel.appName,
-                    applicationVersion: viewModel.appVersion);
+                    applicationVersion: viewModel.appVersion,
+                    applicationLegalese: "emintolgahanpolat");
               },
             )
           ],

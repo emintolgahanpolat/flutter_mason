@@ -1,5 +1,5 @@
 import 'dart:ui';
-
+import 'package:flutter/material.dart';
 import './app_storage.dart';
 import 'package:injectable/injectable.dart';
 
@@ -7,8 +7,8 @@ abstract class LocalDataSource {
   Locale get locale;
   Future setLocale(Locale locale);
 
-  bool get isDark;
-  Future setIsDark(bool flag);
+  ThemeMode get appearance;
+  Future setAppearance(ThemeMode themeMode);
   Future<void> clear();
 
   String? get email;
@@ -28,11 +28,12 @@ class LocalDataSourceImpl implements LocalDataSource {
   }
 
   @override
-  bool get isDark => _getStorage.read<bool>("isDark") == true;
+  ThemeMode get appearance =>
+      ThemeMode.values[_getStorage.read<int>("appearance") ?? 0];
 
   @override
-  Future setIsDark(bool flag) {
-    return _getStorage.write("isDark", flag);
+  Future setAppearance(ThemeMode themeMode) {
+    return _getStorage.write("appearance", themeMode.index);
   }
 
   @override
@@ -60,15 +61,6 @@ class TestLocalDataSourceImpl implements LocalDataSource {
     return;
   }
 
-  bool _isDark = false;
-  @override
-  bool get isDark => _isDark;
-
-  @override
-  Future setIsDark(bool flag) async {
-    _isDark = flag;
-  }
-
   String? _email;
   @override
   String? get email => _email;
@@ -86,6 +78,16 @@ class TestLocalDataSourceImpl implements LocalDataSource {
   @override
   Future setLocale(Locale locale) async {
     _locale = locale;
+    return;
+  }
+
+  ThemeMode _themeMode = ThemeMode.system;
+  @override
+  ThemeMode get appearance => _themeMode;
+
+  @override
+  Future setAppearance(ThemeMode themeMode) async {
+    _themeMode = themeMode;
     return;
   }
 }

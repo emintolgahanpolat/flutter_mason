@@ -30,7 +30,7 @@ class _SettingsPageState extends BaseState<SettingsViewModel, SettingsPage> {
               onTap: () {
                 AppSettings.openAppSettings(type: AppSettingsType.appLocale);
               },
-              title: const Text("Localization"),
+              title: Text(context.l10n.language),
               leading: const Icon(AppIcons.language),
               trailing: const Icon(AppIcons.chevronRight),
             ),
@@ -39,7 +39,7 @@ class _SettingsPageState extends BaseState<SettingsViewModel, SettingsPage> {
                 viewModel: getIt<AppViewModel>(),
                 builder: (context, vm) {
                   return ListTile(
-                    title: const Text("Appearance"),
+                    title: Text(context.l10n.appearance),
                     onTap: () {
                       showModalBottomSheet(
                           context: context,
@@ -56,7 +56,7 @@ class _SettingsPageState extends BaseState<SettingsViewModel, SettingsPage> {
                                           vm.setDarkMode(ThemeMode.light);
                                           Navigator.pop(c);
                                         },
-                                        title: const Text("Light"),
+                                        title: Text(context.l10n.light),
                                       ),
                                       RadioListTile(
                                         value: ThemeMode.dark,
@@ -65,7 +65,7 @@ class _SettingsPageState extends BaseState<SettingsViewModel, SettingsPage> {
                                           vm.setDarkMode(ThemeMode.dark);
                                           Navigator.pop(c);
                                         },
-                                        title: const Text("Dark"),
+                                        title: Text(context.l10n.dark),
                                       ),
                                       RadioListTile(
                                         value: ThemeMode.system,
@@ -74,7 +74,7 @@ class _SettingsPageState extends BaseState<SettingsViewModel, SettingsPage> {
                                           vm.setDarkMode(ThemeMode.system);
                                           Navigator.pop(c);
                                         },
-                                        title: const Text("System Default"),
+                                        title: Text(context.l10n.systemDefault),
                                       )
                                     ],
                                   ),
@@ -87,13 +87,13 @@ class _SettingsPageState extends BaseState<SettingsViewModel, SettingsPage> {
                 }),
             const Divider(),
             ListTile(
-              title: const Text("App Version"),
+              title: Text(context.l10n.version),
               leading: const Icon(AppIcons.version),
               subtitle: Text(viewModel.appVersion),
             ),
             const Divider(),
             ListTile(
-              title: const Text("Licenses"),
+              title: Text(context.l10n.licenses),
               leading: const Icon(AppIcons.license),
               trailing: const Icon(AppIcons.chevronRight),
               onTap: () {

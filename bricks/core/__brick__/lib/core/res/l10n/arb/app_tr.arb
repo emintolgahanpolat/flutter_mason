@@ -1,5 +1,12 @@
 {
   "@@locale": "tr",
+  "appearance": "Tema",
+  "dark": "Koyu",
+  "home": "Ana Sayfa",
+  "language": "Dil",
+  "licenses": "Lisanslar",
+  "light": "Parlak",
   "settings": "Ayarlar",
-  "home": "Ana Sayfa"
+  "systemDefault": "Sistem Varsayılan",
+  "version": "Versiyon"
 }

@@ -1,4 +1,5 @@
 import '../../../core/base/base_widget.dart';
+import '../../../core/res/l10n/l10n.dart';
 import './root_vm.dart';
 import '../../router/app_router.dart';
 import '../../router/app_router.routes.dart';
@@ -16,12 +17,12 @@ class _RootPageState extends BaseState<RootViewModel, RootPage> {
   final List<NavItemModel> _items = [
     NavItemModel(
         icon: Icons.home,
-        label: 'Home',
+        label: (c) => c.l10n.home,
         route: RouteMaps.homeRoute,
         key: GlobalKey<NavigatorState>()),
     NavItemModel(
         icon: Icons.settings,
-        label: 'Settings',
+        label: (c) => c.l10n.settings,
         route: RouteMaps.settingsRoute,
         key: GlobalKey<NavigatorState>()),
   ];
@@ -50,7 +51,7 @@ class _RootPageState extends BaseState<RootViewModel, RootPage> {
         items: _items
             .map((e) => BottomNavigationBarItem(
                   icon: Icon(e.icon),
-                  label: e.label,
+                  label: e.label(context),
                 ))
             .toList(),
       ));
@@ -64,7 +65,7 @@ class NavItemModel {
     required this.key,
   });
   final IconData icon;
-  final String label;
+  final String Function(BuildContext context) label;
   final String route;
   final GlobalKey<NavigatorState> key;
 }

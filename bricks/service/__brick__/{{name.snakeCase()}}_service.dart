@@ -1,7 +1,7 @@
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 
-
+part '{{name.snakeCase()}}.g.dart';
 /*
   @Environment(Environment.prod)
   @lazySingleton

@@ -43,6 +43,7 @@ class _SettingsPageState extends BaseState<SettingsViewModel, SettingsPage> {
                     onTap: () {
                       showModalBottomSheet(
                           context: context,
+                          showDragHandle: true,
                           useRootNavigator: true,
                           builder: (c) => SingleChildScrollView(
                                 child: SafeArea(

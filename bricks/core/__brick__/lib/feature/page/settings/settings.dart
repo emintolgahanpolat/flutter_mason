@@ -31,7 +31,8 @@ class _SettingsPageState extends BaseState<SettingsViewModel, SettingsPage> {
                 AppSettings.openAppSettings(type: AppSettingsType.appLocale);
               },
               title: const Text("Localization"),
-              trailing: const Icon(AppIcons.language),
+              leading: const Icon(AppIcons.language),
+              trailing: const Icon(AppIcons.chevronRight),
             ),
             const Divider(),
             Consumer(

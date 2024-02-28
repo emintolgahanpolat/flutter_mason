@@ -2,6 +2,7 @@ import '../../../core/base/base_view_model.dart';
 import '../../../core/source/local_data_source.dart';
 import '../../../core/logger.dart';
 import '../../../core/siren/siren.dart';
+import '../../data/repository/app_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:injectable/injectable.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -10,9 +11,11 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 @singleton
 class AppViewModel extends BaseViewModel {
   final PackageInfo _packageInfo;
+  final AppRepository _appRepository;
   final Connectivity _connectivity;
   final LocalDataSource _localDataSource;
-  AppViewModel(this._localDataSource, this._packageInfo, this._connectivity) {
+  AppViewModel(this._localDataSource, this._packageInfo, this._connectivity,
+      this._appRepository) {
     _checkForUpdate();
     _checkConnectivity();
   }
@@ -40,17 +43,18 @@ class AppViewModel extends BaseViewModel {
   SirenType sirenType = SirenType.none;
   String get packageName => _packageInfo.packageName;
   void _checkForUpdate() {
-    Siren()
-      ..majorUpdateAlertType = SirenType.force
-      ..minorUpdateAlertType = SirenType.option
-      ..patchUpdateAlertType = SirenType.skip
-      ..checkVersionName(
-          //  TODO : Add your app's min version
-          minVersion: "1.0.0",
-          currentVersion: _packageInfo.version,
-          onDetectNewVersion: (version, type) {
-            sirenType = type;
-            notifyListeners();
-          });
+    _appRepository.getAppVersion().then((value) {
+      Siren()
+        ..majorUpdateAlertType = SirenType.force
+        ..minorUpdateAlertType = SirenType.option
+        ..patchUpdateAlertType = SirenType.skip
+        ..checkVersionName(
+            minVersion: value,
+            currentVersion: _packageInfo.version,
+            onDetectNewVersion: (version, type) {
+              sirenType = type;
+              notifyListeners();
+            });
+    });
   }
 }

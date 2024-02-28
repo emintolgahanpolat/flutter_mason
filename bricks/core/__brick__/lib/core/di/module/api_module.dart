@@ -5,15 +5,17 @@ import '../../interceptor/error_interceptor.dart';
 import '../../interceptor/log_interceptor.dart';
 import '../../../feature/data/service/app_service.dart';
 import '../../../feature/data/service/mock_app_service.dart';
+import '../../config/app_config.dart';
+import '../../di/locator.dart';
 
 @module
 abstract class ApiModule {
-  @Order(-1)
+  @Order(-998)
   @lazySingleton
   Dio get injectRetrofitAPI {
     Dio dio = Dio(
       BaseOptions(
-        baseUrl: "https://api.example.com/",
+        baseUrl: getIt<AppConfig>().baseUrl,
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",

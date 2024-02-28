@@ -5,6 +5,6 @@ class MockAppService implements AppService {
 
   @override
   Future<String> getAppVersion() async {
-    return "2.0.0";
+    return "1.0.0";
   }
 }

@@ -28,11 +28,7 @@ class AppViewModel extends BaseViewModel {
     });
   }
 
-  Locale? get locale => _localDataSource.locale;
-  Future setLocale(Locale locale) =>
-      _localDataSource.setLocale(locale).then((value) {
-        notifyListeners();
-      });
+  Future setLocale(Locale locale) => _localDataSource.setLocale(locale);
 
   bool get isDarkMode => _localDataSource.isDark;
   Future setDarkMode(bool isDark) =>

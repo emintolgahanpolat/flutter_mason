@@ -2,11 +2,11 @@ import '../../../core/base/base_widget.dart';
 import '../../../core/di/locator.dart';
 import '../../../core/res/icons.dart';
 import '../../../core/res/l10n/l10n.dart';
-import '../../../core/res/l10n/app_localizations.dart';
 import '../app/app_vm.dart';
 import '../settings/settings_vm.dart';
 import 'package:flutter/material.dart';
 import 'package:route_map/route_map.dart';
+import 'package:app_settings/app_settings.dart';
 
 @RouteMap(name: "settings")
 class SettingsPage extends StatefulWidget {
@@ -28,26 +28,7 @@ class _SettingsPageState extends BaseState<SettingsViewModel, SettingsPage> {
             const Divider(),
             ListTile(
               onTap: () {
-                showModalBottomSheet<Locale?>(
-                    showDragHandle: true,
-                    context: context,
-                    useRootNavigator: true,
-                    builder: (c) => ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: AppLocalizations.supportedLocales.length,
-                        itemBuilder: (c, i) {
-                          var item = AppLocalizations.supportedLocales[i];
-                          return ListTile(
-                            onTap: () {
-                              Navigator.pop(c, item);
-                            },
-                            title: Text(item.fullName()),
-                          );
-                        })).then((value) {
-                  if (value != null) {
-                    getIt<AppViewModel>().setLocale(value);
-                  }
-                });
+                AppSettings.openAppSettings(type: AppSettingsType.appLocale);
               },
               title: const Text("Localization"),
               trailing: const Icon(AppIcons.language),

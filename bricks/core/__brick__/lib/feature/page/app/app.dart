@@ -27,7 +27,10 @@ class _AppState extends BaseState<AppViewModel, App> {
         initialRoute: RouteMaps.root,
         onGenerateRoute: onGenerateRoute,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
-        locale: viewModel.locale,
+        localeResolutionCallback: (locale, supportedLocales) {
+          viewModel.setLocale(Locale(locale!.languageCode.split("_")[0]));
+          return Locale(locale!.languageCode.split("_")[0]);
+        },
         builder: (context, child) {
           if (viewModel.sirenType == SirenType.force) {
             return ForceUpdatePage(update: () {

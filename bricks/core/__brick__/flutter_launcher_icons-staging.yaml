@@ -3,6 +3,4 @@ flutter_launcher_icons:
   image_path_android: "assets/flavor/android_logo.png"
   adaptive_icon_background: "#FF5F00"
   adaptive_icon_foreground: "assets/flavor/android_logo.png"
-  ios: true
-  remove_alpha_ios: true
-  image_path_ios: "assets/flavor/ios_logo_stg.png"
+  ios: false

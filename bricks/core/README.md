@@ -56,9 +56,7 @@ flutter pub run flutter_launcher_icons
 
 ```sh
 xcode -> Assets
-AppIcon-production -> AppIcon
-AppIcon-development -> AppIcon-dev
-AppIcon-staging -> AppIcon-stg
+AppIcon-prod -> AppIcon
 
 and
 LaunchImage change image

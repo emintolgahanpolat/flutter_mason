@@ -28,6 +28,9 @@ class _AppState extends BaseState<AppViewModel, App> {
         onGenerateRoute: onGenerateRoute,
         localizationsDelegates: AppLocalizations.localizationsDelegates,
         localeResolutionCallback: (locale, supportedLocales) {
+          if (Platform.isAndroid) {
+            return viewModel.locale;
+          }
           viewModel.setLocale(Locale(locale!.languageCode.split("_")[0]));
           return Locale(locale!.languageCode.split("_")[0]);
         },

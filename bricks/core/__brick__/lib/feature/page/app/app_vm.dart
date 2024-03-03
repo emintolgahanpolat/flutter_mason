@@ -27,6 +27,7 @@ class AppViewModel extends BaseViewModel {
     });
   }
 
+  Locale? get locale => _localDataSource.locale;
   Future setLocale(Locale locale) => _localDataSource.setLocale(locale);
 
   ThemeMode get appearance => _localDataSource.appearance;

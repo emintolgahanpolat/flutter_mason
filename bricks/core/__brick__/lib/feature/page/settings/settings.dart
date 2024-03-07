@@ -2,6 +2,8 @@ import 'dart:io';
 import '../../../core/base/base_widget.dart';
 import '../../../core/di/locator.dart';
 import '../../../core/res/icons.dart';
+
+import '../../../core/res/l10n/app_localizations.dart';
 import '../../../core/res/l10n/l10n.dart';
 import '../app/app_vm.dart';
 import '../settings/settings_vm.dart';

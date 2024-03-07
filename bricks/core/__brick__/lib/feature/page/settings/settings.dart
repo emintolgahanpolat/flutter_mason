@@ -30,7 +30,7 @@ class _SettingsPageState extends BaseState<SettingsViewModel, SettingsPage> {
             const Divider(),
             ListTile(
               onTap: () {
-                  if (Platform.isIOS) {
+                if (Platform.isIOS) {
                   AppSettings.openAppSettings(type: AppSettingsType.appLocale);
                 } else if (Platform.isAndroid) {
                   showModalBottomSheet<Locale?>(
@@ -54,6 +54,7 @@ class _SettingsPageState extends BaseState<SettingsViewModel, SettingsPage> {
                       Restart.restartApp();
                     }
                   });
+                }
               },
               title: Text(context.l10n.language),
               leading: const Icon(AppIcons.language),

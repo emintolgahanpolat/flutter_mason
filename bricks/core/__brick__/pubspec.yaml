@@ -33,7 +33,6 @@ dependencies:
 
 dev_dependencies:
   build_runner: ^2.4.7
-  flutter_launcher_icons: ^0.13.1
   flutter_gen_runner: ^5.4.0
   flutter_lints: ^3.0.1
   flutter_test:
@@ -42,6 +41,8 @@ dev_dependencies:
   json_serializable: ^6.7.1
   retrofit_generator: ^8.0.6
   route_map_generator: ^0.0.17
+  launcher_icon:
+    git: https://github.com/emintolgahanpolat/launcher_icon.git
 
 flutter:
   uses-material-design: true

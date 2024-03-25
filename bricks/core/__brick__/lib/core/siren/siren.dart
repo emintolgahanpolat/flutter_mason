@@ -2,7 +2,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:my_app/core/res/colors.gen.dart';
+import '../../../core/res/colors.gen.dart';
 
 enum SirenType {
   force, //Forces user to update your app

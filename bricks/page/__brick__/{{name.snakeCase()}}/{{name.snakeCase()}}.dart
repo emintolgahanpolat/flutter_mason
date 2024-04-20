@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../../../core/base/base_widget.dart';
+import '/core/base/base_widget.dart';
 import 'package:route_map/route_map.dart';
 import './{{name.snakeCase()}}_vm.dart';
 

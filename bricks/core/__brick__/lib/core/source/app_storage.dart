@@ -5,7 +5,7 @@ class AppStorage {
   AppStorage(this._storage);
   final SharedPreferences _storage;
   T? read<T>(String key) {
-    String? readData = _storage.getString(AesEncrypt.encrypt(key));
+      String? readData = _storage.getString(AesEncrypt.encrypt(key));
     if (readData != null) {
       String data = AesEncrypt.decrypt(readData);
       switch (T) {
@@ -23,7 +23,6 @@ class AppStorage {
           throw Exception('Not yet implemented $key');
       }
     }
-
     return null;
   }
 

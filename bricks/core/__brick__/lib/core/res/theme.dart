@@ -67,9 +67,6 @@ class AppTheme {
             return const Icon(AppIcons.xmark);
           },
         ),
-        iconButtonTheme: IconButtonThemeData(
-            style: IconButton.styleFrom(
-                backgroundColor: colorScheme.onPrimary.withOpacity(0.5))),
         iconTheme: IconThemeData(
             color: colorScheme.onSurface.withOpacity(
               0.5,

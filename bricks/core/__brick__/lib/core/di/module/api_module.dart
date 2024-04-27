@@ -10,8 +10,7 @@ import '../../di/locator.dart';
 
 @module
 abstract class ApiModule {
-  @Order(-998)
-  @lazySingleton
+  @LazySingleton(order: -998)
   Dio get injectRetrofitAPI {
     Dio dio = Dio(
       BaseOptions(

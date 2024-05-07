@@ -33,10 +33,10 @@
   "getSet": {
     "prefix": "getset",
     "body": [
-      "$2 _$1;"
-      "$2 get $1 => _$1;"
-      "void set$1($2 $1){",
-      "_$1 = $1;",
+      "$2 _$1;",
+      "$2 get $1 => _$1;",
+      "void set${1/(.*)/${1:/pascalcase}/}($2 value){",
+      "_$1 = value;",
       "}"
     ]
   }

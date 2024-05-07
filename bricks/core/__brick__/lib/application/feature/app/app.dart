@@ -3,10 +3,10 @@ import '../../../core/base/base_widget.dart';
 import '../../../core/res/theme.dart';
 import '../../../core/res/l10n/app_localizations.dart';
 import '../no_connectivity/no_connectivity.dart';
-import './app_vm.dart';
+import 'app_vm.dart';
 import '../../router/app_router.dart';
-import '../../router/app_router.routes.dart';
-import '../../../core//siren/siren.dart';
+import '../../../feature/router/app_router.routes.dart';
+import '../../../core/siren/siren.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 

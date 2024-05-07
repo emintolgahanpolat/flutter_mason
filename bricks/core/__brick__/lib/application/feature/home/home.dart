@@ -1,8 +1,8 @@
 import '../../../core/base/base_widget.dart';
-import './home_vm.dart';
+import 'home_vm.dart';
 import '../../../core/res/icons.dart';
 import '../../../core/res/l10n/l10n.dart';
-import '../../router/app_router.routes.dart';
+import '../../../feature/router/app_router.routes.dart';
 import 'package:flutter/material.dart';
 import 'package:route_map/route_map.dart';
 

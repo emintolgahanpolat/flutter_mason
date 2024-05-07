@@ -3,8 +3,8 @@ import 'package:flutter/foundation.dart';
 import 'package:injectable/injectable.dart';
 import '../../interceptor/error_interceptor.dart';
 import '../../interceptor/log_interceptor.dart';
-import '../../../feature/data/service/app_service.dart';
-import '../../../feature/data/service/mock_app_service.dart';
+import '../../../application/feature/app/data/service/app_service.dart';
+import '../../../application/feature/app/data/service/mock_app_service.dart';
 import '../../config/app_config.dart';
 import '../../di/locator.dart';
 

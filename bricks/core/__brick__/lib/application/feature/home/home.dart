@@ -20,7 +20,7 @@ class _HomePageState extends BaseState<HomeViewModel, HomePage> {
         appBar: AppBar(
       title: Text(context.l10n.home),
       actions: [
-        IconButton.filled(
+        IconButton(
             onPressed: () {
               SettingsRoute().push(context);
             },

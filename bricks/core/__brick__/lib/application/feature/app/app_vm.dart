@@ -22,7 +22,7 @@ class AppViewModel extends BaseViewModel {
   bool get isConnect => _connectivityStatus != ConnectivityResult.none;
   void _checkConnectivity() {
     _connectivity.onConnectivityChanged.listen((event) {
-      _connectivityStatus = event;
+      _connectivityStatus = event.first;
       notifyListeners();
     });
   }

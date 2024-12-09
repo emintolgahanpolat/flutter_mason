@@ -2,7 +2,7 @@ import '../../../core/base/base_widget.dart';
 import '../../../core/res/l10n/l10n.dart';
 import 'root_vm.dart';
 import '../../router/app_router.dart';
-import '../../../feature/router/app_router.routes.dart';
+import '../../../application/router/app_router.routes.dart';
 import 'package:flutter/material.dart';
 import 'package:route_map/route_map.dart';
 

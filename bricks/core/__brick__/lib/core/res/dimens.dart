@@ -1,3 +1,5 @@
+import 'package:flutter/material.dart';
+
 class Dimens {
   /// 2.0
   static const double xxs = 2.0;
@@ -19,4 +21,23 @@ class Dimens {
 
   /// 48.0
   static const double xxl = 48.0;
+}
+
+enum Gap { vertical, horizontal }
+
+extension GapEx on Gap {
+  Widget get xxs => _build(2);
+  Widget get xs => _build(4);
+  Widget get s => _build(8);
+  Widget get m => _build(16);
+  Widget get l => _build(24);
+  Widget get xl => _build(32);
+  Widget get xxl => _build(48);
+  Widget _build(double size) => this == Gap.vertical
+      ? SizedBox(
+          height: size,
+        )
+      : SizedBox(
+          width: size,
+        );
 }

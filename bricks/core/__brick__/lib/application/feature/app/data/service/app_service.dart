@@ -1,7 +1,7 @@
 import 'package:retrofit/retrofit.dart';
 import 'package:dio/dio.dart';
 
-part 'app_service.g.dart';
+part '../../../../../feature/data/service/app_service.g.dart';
 
 /*
   @Environment(Environment.prod)

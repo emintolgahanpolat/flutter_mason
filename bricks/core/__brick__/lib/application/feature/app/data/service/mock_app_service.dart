@@ -1,4 +1,4 @@
-import './app_service.dart';
+import 'app_service.dart';
 
 class MockAppService implements AppService {
   MockAppService();

@@ -1,5 +1,5 @@
 import 'bootstrap.dart';
-import './feature/page/app/app.dart';
+import 'application/feature/app/app.dart';
 import 'package:injectable/injectable.dart';
 
 void main() async {

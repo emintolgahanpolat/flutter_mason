@@ -1,17 +1,5 @@
 import 'package:flutter/material.dart';
 import '../util/alert_message.dart';
-import '../base_response/base_response.dart';
-
-extension FutureBaseResponseExtension<T> on Future<BaseResponse<T>> {
-  Future<T> handleResponse() async {
-    var response = await this;
-    if (response.success) {
-      return response.data!;
-    } else {
-      throw Exception('${response.message}');
-    }
-  }
-}
 
 extension FutureExtension<T> on Future<T> {
   Future<T> setData(Function(T) function) async {

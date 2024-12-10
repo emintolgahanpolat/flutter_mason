@@ -140,4 +140,5 @@ app.*.symbols
 *.g.dart
 *.routes.dart
 *.gen.dart
+*.config.dart
 /lib/core/res/l10n/app_*.dart

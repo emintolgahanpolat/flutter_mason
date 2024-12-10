@@ -12,6 +12,7 @@ dependencies:
   collection: ^1.18.0
   connectivity_plus: ^6.1.0
   flutter_image_compress: ^2.3.0
+  google_fonts: ^6.2.1
   encrypt: ^5.0.3
   flutter:
     sdk: flutter

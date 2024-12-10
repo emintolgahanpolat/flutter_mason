@@ -52,7 +52,7 @@ extension BuildContextEx on BuildContext {
         context: this,
         builder: (c) {
           return AlertDialog.adaptive(
-            icon: HeroIcon(
+            icon: Icon(
               _getIcon(status),
               color: _getColor(status),
               size: 36,
@@ -95,7 +95,7 @@ extension BuildContextEx on BuildContext {
         context: this,
         builder: (c) {
           return AlertDialog.adaptive(
-            icon: HeroIcon(
+            icon: Icon(
               _getIcon(status),
               color: _getColor(status),
               size: 36,
@@ -139,7 +139,7 @@ class InfoMessage {
       ..showSnackBar(SnackBar(
         content: Row(
           children: [
-            HeroIcon(
+            Icon(
               _getIcon(status),
               color: Colors.white,
               size: 36,
@@ -182,7 +182,7 @@ class InfoMessage {
   }
 }
 
-Icons _getIcon(AlertStatus s) {
+IconData _getIcon(AlertStatus s) {
   switch (s) {
     case AlertStatus.success:
       return AppIcons.success;

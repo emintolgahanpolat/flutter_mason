@@ -24,8 +24,6 @@ extension BuildContextEx on BuildContext {
 
     return compressedImage != null ? [compressedImage] : [];
   }
-
-  TextTheme get textTheme => Theme.of(this).textTheme;
 }
 
 Future<XFile?> _compressImage(XFile file, {bool isSupportAlfa = false}) async {

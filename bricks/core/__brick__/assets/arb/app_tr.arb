@@ -1,11 +1,13 @@
 {
   "@@locale": "tr",
   "appearance": "Tema",
+  "cancel": "İptal",
   "dark": "Koyu",
   "home": "Ana Sayfa",
   "language": "Dil",
   "licenses": "Lisanslar",
   "light": "Parlak",
+  "okay": "Tamam",
   "settings": "Ayarlar",
   "systemDefault": "Sistem Varsayılan",
   "version": "Versiyon"

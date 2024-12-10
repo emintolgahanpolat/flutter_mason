@@ -16,6 +16,8 @@ Future<void> bootstrap(FutureOr<Widget> Function() builder, String env) async {
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,
     ]);
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.edgeToEdge,
+        overlays: [SystemUiOverlay.bottom]);
     await setupDI(env);
     runApp(await builder());
   }, (error, stackTrace) {

@@ -14,7 +14,7 @@ abstract class ApiModule {
   Dio get injectRetrofitAPI {
     Dio dio = Dio(
       BaseOptions(
-        baseUrl: getIt<AppConfig>().baseUrl,
+        baseUrl: AppConfig.baseUrl,
         headers: {
           "Content-Type": "application/json",
           "Accept": "application/json",

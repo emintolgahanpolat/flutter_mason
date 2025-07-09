@@ -1,71 +1,72 @@
 import '../../../core/base/base_widget.dart';
 import '../../../core/res/l10n/l10n.dart';
-import 'root_vm.dart';
 import '../../router/app_router.dart';
-import '../../../application/router/app_router.routes.dart';
+import '../../../core/extension/screen_ex.dart';
+import 'package:go_router/go_router.dart';
+
 import 'package:flutter/material.dart';
-import 'package:route_map/route_map.dart';
 
-@RouteMap(name: "/")
-class RootPage extends StatefulWidget {
-  const RootPage({super.key});
+class RootPage extends StatelessWidget {
+  final StatefulNavigationShell navigationShell;
+
+  const RootPage({super.key, required this.navigationShell});
+
   @override
-  State<RootPage> createState() => _RootPageState();
-}
-
-class _RootPageState extends BaseState<RootViewModel, RootPage> {
-  final List<NavItemModel> _items = [
-    NavItemModel(
-        icon: Icons.home,
-        label: (c) => c.l10n.home,
-        route: RouteMaps.homeRoute,
-        key: GlobalKey<NavigatorState>()),
-    NavItemModel(
-        icon: Icons.settings,
-        label: (c) => c.l10n.settings,
-        route: RouteMaps.settingsRoute,
-        key: GlobalKey<NavigatorState>()),
-  ];
-  int currentIndex = 0;
-  Widget get content => TabSwitchingView(
-      currentTabIndex: currentIndex,
-      tabCount: _items.length,
-      tabBuilder: (c, index) => Navigator(
-          key: _items[index].key,
-          initialRoute: _items[index].route,
-          onUnknownRoute: (settings) => MaterialPageRoute(
-              builder: (_) => Scaffold(
-                    appBar: AppBar(title: const Text('unknown')),
-                  )),
-          onGenerateRoute: onGenerateRoute));
-  @override
-  Widget build(BuildContext context) => Scaffold(
-      body: content,
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed,
-        currentIndex: currentIndex,
-        onTap: (i) {
-          currentIndex = i;
-          setState(() {});
-        },
-        items: _items
-            .map((e) => BottomNavigationBarItem(
-                  icon: Icon(e.icon),
-                  label: e.label(context),
-                ))
-            .toList(),
-      ));
-}
-
-class NavItemModel {
-  NavItemModel({
-    required this.icon,
-    required this.label,
-    required this.route,
-    required this.key,
-  });
-  final IconData icon;
-  final String Function(BuildContext context) label;
-  final String route;
-  final GlobalKey<NavigatorState> key;
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Row(
+        children: [
+          if (!context.isCompact)
+            NavigationRail(
+              labelType: context.isExpanded
+                  ? NavigationRailLabelType.none
+                  : NavigationRailLabelType.all,
+              extended: context.isExpanded,
+              selectedIndex: navigationShell.currentIndex,
+              onDestinationSelected: (index) {
+                navigationShell.goBranch(
+                  index,
+                  initialLocation: index == navigationShell.currentIndex,
+                );
+              },
+              destinations: [
+                NavigationRailDestination(
+                  icon: const Icon(Icons.home),
+                  label: Text(context.l10n.home),
+                ),
+                NavigationRailDestination(
+                  icon: const Icon(Icons.settings),
+                  label: Text(context.l10n.settings),
+                ),
+              ],
+            ),
+          if (!context.isCompact) const VerticalDivider(),
+          Expanded(child: SafeArea(child: navigationShell)),
+        ],
+      ),
+      bottomNavigationBar: context.isCompact
+          ? BottomNavigationBar(
+              currentIndex: navigationShell.currentIndex > 3
+                  ? 3
+                  : navigationShell.currentIndex,
+              onTap: (index) {
+                navigationShell.goBranch(
+                  index,
+                  initialLocation: index == navigationShell.currentIndex,
+                );
+              },
+              items: [
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.home),
+                  label: context.l10n.home,
+                ),
+                BottomNavigationBarItem(
+                  icon: const Icon(Icons.settings),
+                  label: context.l10n.settings,
+                ),
+              ],
+            )
+          : null,
+    );
+  }
 }

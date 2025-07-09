@@ -1,3 +1,4 @@
+// ignore_for_file: use_build_context_synchronously
 import 'package:flutter/material.dart';
 import '../util/alert_message.dart';
 
@@ -11,46 +12,42 @@ extension FutureExtension<T> on Future<T> {
     try {
       await this;
     } catch (error) {
-      context.showSnackBar(
-        error.toString(),
-        status: AlertStatus.error,
-      );
+      context.showSnackBar(error.toString(), status: AlertStatus.error);
     }
     return this;
   }
 
-  Future<T> showLoading(
-    BuildContext context,
-  ) async {
+  Future<T> showLoading(BuildContext context) async {
     showDialog(
-        useRootNavigator: true,
-        barrierDismissible: false,
-        context: context,
-        builder: (_) => PopScope(
-              canPop: false,
-              child: Dialog(
-                backgroundColor: Colors.transparent,
-                elevation: 0,
-                child: Center(
-                    child: Container(
-                  decoration: const BoxDecoration(
-                      color: Colors.white, shape: BoxShape.circle),
-                  child: const Padding(
-                    padding: EdgeInsets.all(24.0),
-                    child: CircularProgressIndicator(),
-                  ),
-                )),
+      useRootNavigator: true,
+      barrierDismissible: false,
+      context: context,
+      builder: (_) => PopScope(
+        canPop: false,
+        child: Dialog(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          child: Center(
+            child: Container(
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                shape: BoxShape.circle,
               ),
-            ));
+              child: const Padding(
+                padding: EdgeInsets.all(24.0),
+                child: CircularProgressIndicator(),
+              ),
+            ),
+          ),
+        ),
+      ),
+    );
 
     try {
       T result = await this;
       return result;
     } catch (error) {
-      context.showSnackBar(
-        error.toString(),
-        status: AlertStatus.error,
-      );
+      context.showSnackBar(error.toString(), status: AlertStatus.error);
       return this;
     } finally {
       if (Navigator.of(context, rootNavigator: true).canPop()) {

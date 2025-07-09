@@ -1,5 +1,5 @@
 import 'package:injectable/injectable.dart';
-import '../../source/app_storage.dart';
+import 'package:device_info_plus/device_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -9,10 +9,16 @@ abstract class AppModule {
   @Environment(Environment.dev)
   @Environment(Environment.prod)
   @preResolve
-  Future<AppStorage> get localDataSource async {
-    return SharedPreferences.getInstance().then((value) {
-      return AppStorage(value);
-    });
+  @Singleton(order: -99)
+  Future<SharedPreferences> get localDataSource =>
+      SharedPreferences.getInstance();
+
+  @Environment(Environment.test)
+  @preResolve
+  Future<SharedPreferences> get localDataSourceTest async {
+    // ignore: invalid_use_of_visible_for_testing_member
+    SharedPreferences.setMockInitialValues({});
+    return SharedPreferences.getInstance();
   }
 
   @Environment(Environment.dev)
@@ -23,4 +29,8 @@ abstract class AppModule {
   @Environment(Environment.dev)
   @Environment(Environment.prod)
   Connectivity get connectivity => Connectivity();
+
+  @Environment(Environment.dev)
+  @Environment(Environment.prod)
+  DeviceInfoPlugin get deviceInfo => DeviceInfoPlugin();
 }

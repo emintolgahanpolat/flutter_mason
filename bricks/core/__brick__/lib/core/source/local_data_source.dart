@@ -1,25 +1,20 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
-import './app_storage.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 abstract class LocalDataSource {
-  Locale get locale;
+  Locale? get locale;
+  String get languageCode;
   Future setLocale(Locale locale);
 
   ThemeMode get appearance;
   Future setAppearance(ThemeMode themeMode);
   Future<void> clear();
-
-  String? get email;
-  Future setEmail(String? email);
 }
 
-@Environment(Environment.prod)
-@Environment(Environment.dev)
 @Singleton(as: LocalDataSource)
 class LocalDataSourceImpl implements LocalDataSource {
-  final AppStorage _getStorage;
+  final SharedPreferences _getStorage;
   LocalDataSourceImpl(this._getStorage);
 
   @override
@@ -29,65 +24,23 @@ class LocalDataSourceImpl implements LocalDataSource {
 
   @override
   ThemeMode get appearance =>
-      ThemeMode.values[_getStorage.read<int>("appearance") ?? 0];
+      ThemeMode.values[_getStorage.getInt("appearance") ?? 0];
 
   @override
   Future setAppearance(ThemeMode themeMode) {
-    return _getStorage.write("appearance", themeMode.index);
+    return _getStorage.setInt("appearance", themeMode.index);
   }
 
   @override
-  String? get email => _getStorage.read("email");
-
-  @override
-  Future setEmail(String? email) {
-    return _getStorage.write("email", email);
-  }
-
-  @override
-  Locale get locale => Locale(_getStorage.read<String>("locale") ?? "en");
+  Locale? get locale => _getStorage.getString("locale") == null
+      ? null
+      : Locale(_getStorage.getString("locale")!);
 
   @override
   Future setLocale(Locale locale) {
-    return _getStorage.write("locale", locale);
-  }
-}
-
-@Environment(Environment.test)
-@Singleton(as: LocalDataSource)
-class TestLocalDataSourceImpl implements LocalDataSource {
-  @override
-  Future<void> clear() async {
-    return;
+    return _getStorage.setString("locale", locale.languageCode);
   }
 
-  String? _email;
   @override
-  String? get email => _email;
-
-  @override
-  Future setEmail(String? email) async {
-    _email = email;
-    return;
-  }
-
-  Locale _locale = const Locale("en");
-  @override
-  Locale get locale => _locale;
-
-  @override
-  Future setLocale(Locale locale) async {
-    _locale = locale;
-    return;
-  }
-
-  ThemeMode _themeMode = ThemeMode.system;
-  @override
-  ThemeMode get appearance => _themeMode;
-
-  @override
-  Future setAppearance(ThemeMode themeMode) async {
-    _themeMode = themeMode;
-    return;
-  }
+  String get languageCode => locale?.languageCode ?? "en";
 }

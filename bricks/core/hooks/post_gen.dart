@@ -6,10 +6,6 @@ Future<void> run(HookContext context) async {
 
   final commands = [
     [
-      'flutter',
-      ['create', '.', '--platforms=android,ios']
-    ],
-    [
       'dart',
       ['fix', '--apply']
     ],

@@ -9,19 +9,18 @@ class LoadingDialog {
       _context = context;
       _isShow = true;
       showDialog(
-          useRootNavigator: true,
-          barrierDismissible: false,
-          context: _context,
-          builder: (_) => const PopScope(
-                canPop: false,
-                child: Dialog(
-                  backgroundColor: Colors.transparent,
-                  elevation: 0,
-                  child: _Loading(
-                    width: 56,
-                  ),
-                ),
-              ));
+        useRootNavigator: true,
+        barrierDismissible: false,
+        context: _context,
+        builder: (_) => const PopScope(
+          canPop: false,
+          child: Dialog(
+            backgroundColor: Colors.transparent,
+            elevation: 0,
+            child: CenterLoading(),
+          ),
+        ),
+      );
     }
   }
   static LoadingDialog show(BuildContext context) {
@@ -36,23 +35,23 @@ class LoadingDialog {
   }
 }
 
-class _Loading extends StatelessWidget {
-  final double width;
-  const _Loading({
-    this.width = 36,
-  });
+class CenterLoading extends StatelessWidget {
+  const CenterLoading({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Center(
-        child: Container(
-      decoration:
-          const BoxDecoration(color: Colors.white, shape: BoxShape.circle),
-      child: const Padding(
-        padding: EdgeInsets.all(24.0),
-        child: CircularProgressIndicator(),
+      child: Container(
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          shape: BoxShape.circle,
+        ),
+        child: const Padding(
+          padding: EdgeInsets.all(24.0),
+          child: CircularProgressIndicator.adaptive(),
+        ),
       ),
-    ));
+    );
   }
 }
 

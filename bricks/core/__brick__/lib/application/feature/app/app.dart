@@ -26,22 +26,17 @@ class _AppState extends BaseState<AppViewModel, App> {
       theme: LightTheme().theme(),
       darkTheme: DarkTheme().theme(),
       themeMode: viewModel.appearance,
-
       localizationsDelegates: AppLocalizations.localizationsDelegates,
-      locale: viewModel.locale,
       localeResolutionCallback: (locale, supportedLocales) {
         var mLocale = supportedLocales.firstWhereOrNull(
           (supportedLocale) =>
-              supportedLocale.languageCode == locale?.languageCode,
+              supportedLocale.languageCode ==
+              locale?.languageCode.split("_").firstOrNull,
         );
-
         if (mLocale != null) {
-          if (viewModel.locale == null) {
-            viewModel.setLocale(mLocale);
-            return locale;
-          }
+          viewModel.setLocale(mLocale);
+          return mLocale;
         }
-
         return viewModel.locale ?? supportedLocales.first;
       },
       builder: (context, child) {

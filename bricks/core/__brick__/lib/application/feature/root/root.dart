@@ -26,18 +26,6 @@ class RootPage extends StatelessWidget {
               onDestinationSelected: (index) {
                 navigationShell.goBranch(index);
               },
-              leading: context.isExpanded
-                  ? const SizedBox(
-                      height: kToolbarHeight,
-                      child: Text(
-                        "Memberium",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 24,
-                        ),
-                      ),
-                    )
-                  : null,
               destinations: [
                 NavigationRailDestination(
                   icon: const Icon(Icons.home),

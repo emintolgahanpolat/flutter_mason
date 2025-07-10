@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import '../feature/root/root.dart';
 import '../feature/home/home.dart';
@@ -12,16 +11,11 @@ final router = GoRouter(
         return RootPage(navigationShell: navigationShell);
       },
       branches: [
-        // Home tab
         StatefulShellBranch(
           routes: [
-            GoRoute(
-              path: '/home',
-              builder: (context, state) => const HomePage(),
-            ),
+            GoRoute(path: '/', builder: (context, state) => const HomePage()),
           ],
         ),
-        // Members tab
         StatefulShellBranch(
           routes: [
             GoRoute(

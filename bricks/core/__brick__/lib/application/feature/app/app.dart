@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:collection/collection.dart';
 import '../../../core/base/base_widget.dart';
 import '../../../core/res/l10n/app_localizations.dart';
 import '../no_connectivity/no_connectivity.dart';
@@ -27,12 +28,21 @@ class _AppState extends BaseState<AppViewModel, App> {
       themeMode: viewModel.appearance,
 
       localizationsDelegates: AppLocalizations.localizationsDelegates,
+      locale: viewModel.locale,
       localeResolutionCallback: (locale, supportedLocales) {
-        if (Platform.isAndroid) {
-          return viewModel.locale;
+        var mLocale = supportedLocales.firstWhereOrNull(
+          (supportedLocale) =>
+              supportedLocale.languageCode == locale?.languageCode,
+        );
+
+        if (mLocale != null) {
+          if (viewModel.locale == null) {
+            viewModel.setLocale(mLocale);
+            return locale;
+          }
         }
-        viewModel.setLocale(Locale(locale!.languageCode.split("_")[0]));
-        return Locale(locale!.languageCode.split("_")[0]);
+
+        return viewModel.locale ?? supportedLocales.first;
       },
       builder: (context, child) {
         if (viewModel.sirenType == SirenType.force) {

@@ -24,7 +24,10 @@ class RootPage extends StatelessWidget {
               extended: context.isExpanded,
               selectedIndex: navigationShell.currentIndex,
               onDestinationSelected: (index) {
-                navigationShell.goBranch(index);
+                navigationShell.goBranch(
+                  index,
+                  initialLocation: index == navigationShell.currentIndex,
+                );
               },
               destinations: [
                 NavigationRailDestination(
@@ -47,7 +50,10 @@ class RootPage extends StatelessWidget {
                   ? 3
                   : navigationShell.currentIndex,
               onTap: (index) {
-                navigationShell.goBranch(index);
+                navigationShell.goBranch(
+                  index,
+                  initialLocation: index == navigationShell.currentIndex,
+                );
               },
               items: [
                 BottomNavigationBarItem(

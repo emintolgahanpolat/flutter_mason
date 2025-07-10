@@ -49,107 +49,24 @@ Future<void> run(HookContext context) async {
     }
   }
 
-  context.logger.info('🔧 build.gradle.kts düzenleniyor...');
+  context.logger.info('✅ build.gradle.kts güncelleniyor...');
+
   final gradleFile = File('android/app/build.gradle.kts');
 
   if (!gradleFile.existsSync()) {
-    context.logger.err('❌ build.gradle.kts bulunamadı!');
+    context.logger.err('❌ build.gradle.kts dosyası bulunamadı!');
     return;
   }
 
   String content = gradleFile.readAsStringSync();
 
-  final name = context.vars['name'] as String? ?? 'appname';
-  final nameLower = name.toLowerCase();
+  const applyLine = '\napply { from("flavor.gradle.kts") }\n';
 
-  final importsBlock = '''
-import java.util.Properties
-import java.io.FileInputStream
-
-val keystoreProperties = Properties().apply {
-    val keystoreFile = rootProject.file("key.properties")
-    if (keystoreFile.exists()) {
-        load(FileInputStream(keystoreFile))
-    }
-}
-''';
-
-  final signingConfigsBlock = '''
-    signingConfigs {
-        create("release") {
-            keyAlias = keystoreProperties["keyAlias"] as String
-            keyPassword = keystoreProperties["keyPassword"] as String
-            storeFile = keystoreProperties["storeFile"]?.let { file(it as String) }
-            storePassword = keystoreProperties["storePassword"] as String
-        }
-    }
-''';
-
-  final flavorsBlock = '''
-    flavorDimensions += "default"
-
-    productFlavors {
-        create("production") {
-            dimension = "default"
-            applicationIdSuffix = ""
-            manifestPlaceholders["appName"] = "$nameLower"
-        }
-
-        create("development") {
-            dimension = "default"
-            applicationIdSuffix = ".dev"
-            manifestPlaceholders["appName"] = "[DEV] $nameLower"
-        }
-    }
-''';
-
-  // Zaten varsa işlem yapma
-  if (content.contains('productFlavors')) {
-    context.logger.info('✅ Zaten productFlavors var, işlem yapılmadı.');
-    return;
+  if (content.contains('apply { from("flavor.gradle.kts") }')) {
+    context.logger.info('ℹ️ flavor.gradle.kts zaten ekli, işlem yapılmadı.');
+  } else {
+    content = '$content$applyLine';
+    gradleFile.writeAsStringSync(content);
+    context.logger.info('✅ flavor.gradle.kts satırı eklendi!');
   }
-
-  // En başa imports bloğunu ekle
-  content = importsBlock + '\n\n' + content;
-
-  // --- android bloğunu bul ---
-  final androidStart = content.indexOf('android {');
-  if (androidStart == -1) {
-    context.logger.err('❌ android bloğu bulunamadı!');
-    return;
-  }
-
-  int openBrackets = 0;
-  int closeIndex = -1;
-
-  for (int i = androidStart; i < content.length; i++) {
-    if (content[i] == '{') {
-      openBrackets++;
-    } else if (content[i] == '}') {
-      openBrackets--;
-      if (openBrackets == 0) {
-        closeIndex = i;
-        break;
-      }
-    }
-  }
-
-  if (closeIndex == -1) {
-    context.logger.err('❌ android bloğu kapanışı bulunamadı!');
-    return;
-  }
-
-  // android bloğu kapanışından önce ekle
-  content = content.substring(0, closeIndex) +
-      '\n' +
-      signingConfigsBlock +
-      '\n' +
-      flavorsBlock +
-      '\n' +
-      content.substring(closeIndex);
-
-  gradleFile.writeAsStringSync(content);
-
-  context.logger
-      .info('✅ signingConfigs ve flavors android bloğu SONUNA eklendi!');
 }

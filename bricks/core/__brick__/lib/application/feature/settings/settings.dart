@@ -36,6 +36,21 @@ class _SettingsPageState extends BaseState<SettingsViewModel, SettingsPage> {
                   if (sdkInt < 33 && context.mounted) {
                     _openLangModal(context);
                   } else {
+                    // For Android 13 and above, use AppSettings
+                    /**  
+                    * AndroidManifest.xml:     
+                    * <application
+                    *   android:localeConfig="@xml/locales_config"
+                    *
+                    * main/res/xml/locales_config.xml:
+                    *
+                    * <?xml version="1.0" encoding="utf-8"?>
+                    * <locale-config xmlns:android="http://schemas.android.com/apk/res/android">
+                    *     <locale android:name="en-US" />
+                    *     <locale android:name="tr-TR" />
+                    * </locale-config>
+                    */
+
                     AppSettings.openAppSettings(
                       type: AppSettingsType.appLocale,
                     );

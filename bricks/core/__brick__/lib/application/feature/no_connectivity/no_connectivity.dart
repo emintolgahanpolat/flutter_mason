@@ -8,7 +8,7 @@ class NoConnectivityPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.white.withOpacity(0.9),
+      backgroundColor: Colors.white.withValues(alpha: 0.9),
       body: const Padding(
         padding: EdgeInsets.all(24.0),
         child: Column(
@@ -17,8 +17,11 @@ class NoConnectivityPage extends StatelessWidget {
           children: [
             Expanded(
               child: FittedBox(
-                  child: Icon(AppIcons.noConnectivity,
-                      color: AppColors.primarySwatch)),
+                child: Icon(
+                  AppIcons.noConnectivity,
+                  color: AppColors.primarySwatch,
+                ),
+              ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(vertical: 24),

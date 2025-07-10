@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 extension ColorsEx on Color {
   MaterialColor toMaterial() {
-    return MaterialColor(value, _getSwatch(this));
+    return MaterialColor(500, _getSwatch(this));
   }
 
   Map<int, Color> _getSwatch(Color color) {
@@ -43,8 +43,9 @@ extension ColorsEx on Color {
     assert(amount >= 0 && amount <= 1);
 
     final hsl = HSLColor.fromColor(this);
-    final hslLight =
-        hsl.withLightness((hsl.lightness + amount).clamp(0.0, 1.0));
+    final hslLight = hsl.withLightness(
+      (hsl.lightness + amount).clamp(0.0, 1.0),
+    );
 
     return hslLight.toColor();
   }

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class Dimens {
+  Dimens._();
+
   /// 2.0
   static const double xxs = 2.0;
 
@@ -33,11 +35,6 @@ extension GapEx on Gap {
   Widget get l => _build(24);
   Widget get xl => _build(32);
   Widget get xxl => _build(48);
-  Widget _build(double size) => this == Gap.vertical
-      ? SizedBox(
-          height: size,
-        )
-      : SizedBox(
-          width: size,
-        );
+  Widget _build(double size) =>
+      this == Gap.vertical ? SizedBox(height: size) : SizedBox(width: size);
 }
